@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
 
         await user.save();
 
-        const frontendUrl = process.env.FRONTEND_URL || 'https://mernfront-dmoz.onrender.com';
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000/signup';
         const verificationUrl = `${frontendUrl}/verify/${verificationToken}`;
 
         // Send email (do not fail signup if mail fails)
@@ -148,7 +148,7 @@ router.post('/resend-verification', async (req, res) => {
         user.verificationTokenExpires = Date.now() + 24 * 60 * 60 * 1000;
         await user.save();
 
-        const frontendUrl = process.env.FRONTEND_URL || 'https://mernfront-dmoz.onrender.com';
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000/login';
         const verificationUrl = `${frontendUrl}/verify/${verificationToken}`;
 
         try {
@@ -190,7 +190,7 @@ router.post('/forgot-password', async (req, res) => {
         user.resetPasswordExpires = Date.now() + 60 * 60 * 1000;
         await user.save();
 
-        const frontendUrl = process.env.FRONTEND_URL || 'https://mernfront-dmoz.onrender.com';
+        const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000/login';
         const resetUrl = `${frontendUrl}/reset-password/${token}`;
 
         try {
